@@ -1,0 +1,272 @@
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.3.0 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+mysql> CREATE DATABAS ruhande;
+Query OK, 1 row affected (0.02 sec)
+mysql> USE ruhande;
+Database changed
+
+#show databases
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| hotel              |
+| huye2              |
+| information_schema |
+| mysql              |
+| performance_schema |
+| ruhande            |
+| sys                |
++--------------------+
+7 rows in set (0.00 sec)
+#show tables
+
+mysql> show tables;
+ERROR 1046 (3D000): No database selected
+mysql> use hotel;
+Database changed
+mysql> show tables;
++-----------------+
+| Tables_in_hotel |
++-----------------+
+| person          |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> user ruhande;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'user ruhande' at line 1
+mysql> use ruhande
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_ruhande |
++-------------------+
+| ngoma             |
++-------------------+
+1 row in set (0.00 sec)
+#describe tables
+
+mysql> desc ngoma;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| id     | int          | NO   | PRI | NULL    |       |
+| fname  | varchar(255) | YES  |     | NULL    |       |
+| lname  | varchar(255) | YES  |     | NULL    |       |
+| gender | varchar(255) | YES  |     | NULL    |       |
+| cell   | varchar(255) | YES  |     | NULL    |       |
+| sector | varchar(255) | YES  |     | NULL    |       |
+| tel    | varchar(255) | YES  |     | NULL    |       |
+| email  | varchar(255) | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+#select  table ngoma
+
+mysql> select *from ngoma;
++----+--------+-------+--------+-------+--------+------------+-----------------------+
+| id | fname  | lname | gender | cell  | sector | tel        | email                 |
++----+--------+-------+--------+-------+--------+------------+-----------------------+
+|  1 | teta   | mwiza | female | ngoma | tumba  | 0798506155 | tetemwiza01@gmail.com |
+|  2 | muhire | erick | male   | ngoma | tumba  | 0798506100 | muhire01@gmail.com    |
++----+--------+-------+--------+-------+--------+------------+-----------------------+
+2 rows in set (0.00 sec)
+#insert record
+
+mysql>  insert into  ngoma(id,fname,lmane,gender,cell,sector,tel,email) values('3','emanuel','baba','male','ruhango','tumba','07998506155','tetamuhire13@gmail.com'),('4','emanuel','mugisha','male','ruhango','tumba','07998506155','tetamuhire13@gmail.com'));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> insert into  ngoma values('3','emanuel','baba','male','ruhango','tumba','07998506155','tetamuhire13@gmail.com'),('4','emanuel','mugisha','male','ruhango','tumba','07998506155','tetamuhire13@gmail.com');
+Query OK, 2 rows affected (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> insert into  ngoma values('5','erick','mugisha','male','ruhango','tumba','07998506150','tetajmuhire13@gmail.com'),('6','emanuel','mugisha','male','ruhango','tumba','07998506155','tetaemuhire13@gmail.com'),('7','elia','mugisha1','male','ruhango','tumba','07998506123','tetajmuhire133@gmail.com'),('8','bwiza','emerance','male','ruhango','tumba','07998506125','emeranceire13@gmail.com'),('9','bushi','mugisha','male','ruhango','tumba','0799850617','tetajmuhire13@gmail.com'),('10','brusce','ikinyafu','male','ruhango','tumba','0799850222','bruce merode3@gmail.com');
+Query OK, 6 rows affected (0.01 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+# select record
+
+mysql> Select * from ngoma;
++----+---------+----------+--------+---------+--------+-------------+--------------------------+
+| id | fname   | lname    | gender | cell    | sector | tel         | email                    |
++----+---------+----------+--------+---------+--------+-------------+--------------------------+
+|  1 | teta    | mwiza    | female | ngoma   | tumba  | 0798506155  | tetemwiza01@gmail.com    |
+|  2 | muhire  | erick    | male   | ngoma   | tumba  | 0798506100  | muhire01@gmail.com       |
+|  3 | emanuel | baba     | male   | ruhango | tumba  | 07998506155 | tetamuhire13@gmail.com   |
+|  4 | emanuel | mugisha  | male   | ruhango | tumba  | 07998506155 | tetamuhire13@gmail.com   |
+|  5 | erick   | mugisha  | male   | ruhango | tumba  | 07998506150 | tetajmuhire13@gmail.com  |
+|  6 | emanuel | mugisha  | male   | ruhango | tumba  | 07998506155 | tetaemuhire13@gmail.com  |
+|  7 | elia    | mugisha1 | male   | ruhango | tumba  | 07998506123 | tetajmuhire133@gmail.com |
+|  8 | bwiza   | emerance | male   | ruhango | tumba  | 07998506125 | emeranceire13@gmail.com  |
+|  9 | bushi   | mugisha  | male   | ruhango | tumba  | 0799850617  | tetajmuhire13@gmail.com  |
+| 10 | brusce  | ikinyafu | male   | ruhango | tumba  | 0799850222  | bruce merode3@gmail.com  |
++----+---------+----------+--------+---------+--------+-------------+--------------------------+
+10 rows in set (0.00 sec)
+
+mysql> alter table ngoma add column district varchar(255);
+Query OK, 10 rows affected (0.04 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> alter table add province varchar(255);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'add province varchar(255)' at line 1
+mysql> alter table ngoma add province varchar(255);
+Query OK, 10 rows affected (0.04 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+#descibe table
+
+mysql> desc ngoma;
+
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| id       | int          | NO   | PRI | NULL    |       |
+| fname    | varchar(255) | YES  |     | NULL    |       |
+| lname    | varchar(255) | YES  |     | NULL    |       |
+| gender   | varchar(255) | YES  |     | NULL    |       |
+| cell     | varchar(255) | YES  |     | NULL    |       |
+| sector   | varchar(255) | YES  |     | NULL    |       |
+| tel      | varchar(255) | YES  |     | NULL    |       |
+| email    | varchar(255) | YES  |     | NULL    |       |
+| district | varchar(255) | YES  |     | NULL    |       |
+| province | varchar(255) | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+10 rows in set (0.00 sec)
+
+mysql> update table ngoma district='huye' where district;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table ngoma district='huye' where district' at line 1
+mysql>  update table ngoma district='huye' where district='';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table ngoma district='huye' where district=''' at line 1
+mysql>  update table ngoma district='huye' where fname='brusce';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table ngoma district='huye' where fname='brusce'' at line 1
+mysql> select *from ngoma;
+#show all record
++----+---------+----------+--------+---------+--------+-------------+--------------------------+----------+----------+
+| id | fname   | lname    | gender | cell    | sector | tel         | email                    | district | province |
++----+---------+----------+--------+---------+--------+-------------+--------------------------+----------+----------+
+|  1 | teta    | mwiza    | female | ngoma   | tumba  | 0798506155  | tetemwiza01@gmail.com    | NULL     | NULL     |
+|  2 | muhire  | erick    | male   | ngoma   | tumba  | 0798506100  | muhire01@gmail.com       | NULL     | NULL     |
+|  3 | emanuel | baba     | male   | ruhango | tumba  | 07998506155 | tetamuhire13@gmail.com   | NULL     | NULL     |
+|  4 | emanuel | mugisha  | male   | ruhango | tumba  | 07998506155 | tetamuhire13@gmail.com   | NULL     | NULL     |
+|  5 | erick   | mugisha  | male   | ruhango | tumba  | 07998506150 | tetajmuhire13@gmail.com  | NULL     | NULL     |
+|  6 | emanuel | mugisha  | male   | ruhango | tumba  | 07998506155 | tetaemuhire13@gmail.com  | NULL     | NULL     |
+|  7 | elia    | mugisha1 | male   | ruhango | tumba  | 07998506123 | tetajmuhire133@gmail.com | NULL     | NULL     |
+|  8 | bwiza   | emerance | male   | ruhango | tumba  | 07998506125 | emeranceire13@gmail.com  | NULL     | NULL     |
+|  9 | bushi   | mugisha  | male   | ruhango | tumba  | 0799850617  | tetajmuhire13@gmail.com  | NULL     | NULL     |
+| 10 | brusce  | ikinyafu | male   | ruhango | tumba  | 0799850222  | bruce merode3@gmail.com  | NULL     | NULL     |
++----+---------+----------+--------+---------+--------+-------------+--------------------------+----------+----------+
+10 rows in set (0.00 sec)
+
+mysql> update ngoma set province='south' where id='1' or id='2';
+Query OK, 2 rows affected (0.00 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select *from ngoma;
++----+---------+----------+--------+---------+--------+-------------+--------------------------+----------+----------+
+| id | fname   | lname    | gender | cell    | sector | tel         | email                    | district | province |
++----+---------+----------+--------+---------+--------+-------------+--------------------------+----------+----------+
+|  1 | teta    | mwiza    | female | ngoma   | tumba  | 0798506155  | tetemwiza01@gmail.com    | NULL     | south    |
+|  2 | muhire  | erick    | male   | ngoma   | tumba  | 0798506100  | muhire01@gmail.com       | NULL     | south    |
+|  3 | emanuel | baba     | male   | ruhango | tumba  | 07998506155 | tetamuhire13@gmail.com   | NULL     | NULL     |
+|  4 | emanuel | mugisha  | male   | ruhango | tumba  | 07998506155 | tetamuhire13@gmail.com   | NULL     | NULL     |
+|  5 | erick   | mugisha  | male   | ruhango | tumba  | 07998506150 | tetajmuhire13@gmail.com  | NULL     | NULL     |
+|  6 | emanuel | mugisha  | male   | ruhango | tumba  | 07998506155 | tetaemuhire13@gmail.com  | NULL     | NULL     |
+|  7 | elia    | mugisha1 | male   | ruhango | tumba  | 07998506123 | tetajmuhire133@gmail.com | NULL     | NULL     |
+|  8 | bwiza   | emerance | male   | ruhango | tumba  | 07998506125 | emeranceire13@gmail.com  | NULL     | NULL     |
+|  9 | bushi   | mugisha  | male   | ruhango | tumba  | 0799850617  | tetajmuhire13@gmail.com  | NULL     | NULL     |
+| 10 | brusce  | ikinyafu | male   | ruhango | tumba  | 0799850222  | bruce merode3@gmail.com  | NULL     | NULL     |
++----+---------+----------+--------+---------+--------+-------------+--------------------------+----------+----------+
+10 rows in set (0.00 sec)
+
+mysql> alter table ngoma drop district;
+Query OK, 10 rows affected (0.04 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> alter table ngoma modify tel varchar(100);
+Query OK, 10 rows affected (0.04 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+#select  one column
+mysql> select cell from ngoma;
++---------+
+| cell    |
++---------+
+| ngoma   |
+| ngoma   |
+| ruhango |
+| ruhango |
+| ruhango |
+| ruhango |
+| ruhango |
+| ruhango |
+| ruhango |
+| ruhango |
++---------+
+10 rows in set (0.00 sec)
+#using  AND OPERATION
+
+mysql> select * from ngoma where id='1' and gender='female';
++----+-------+-------+--------+-------+--------+------------+-----------------------+----------+
+| id | fname | lname | gender | cell  | sector | tel        | email                 | province |
++----+-------+-------+--------+-------+--------+------------+-----------------------+----------+
+|  1 | teta  | mwiza | female | ngoma | tumba  | 0798506155 | tetemwiza01@gmail.com | south    |
++----+-------+-------+--------+-------+--------+------------+-----------------------+----------+
+1 row in set (0.00 sec)
+#USING  OR OPERATION
+
+mysql> select *from ngoma  where  sector='tumba' or province='south';
++----+---------+----------+--------+---------+--------+-------------+--------------------------+----------+
+| id | fname   | lname    | gender | cell    | sector | tel         | email                    | province |
++----+---------+----------+--------+---------+--------+-------------+--------------------------+----------+
+|  1 | teta    | mwiza    | female | ngoma   | tumba  | 0798506155  | tetemwiza01@gmail.com    | south    |
+|  2 | muhire  | erick    | male   | ngoma   | tumba  | 0798506100  | muhire01@gmail.com       | south    |
+|  3 | emanuel | baba     | male   | ruhango | tumba  | 07998506155 | tetamuhire13@gmail.com   | NULL     |
+|  4 | emanuel | mugisha  | male   | ruhango | tumba  | 07998506155 | tetamuhire13@gmail.com   | NULL     |
+|  5 | erick   | mugisha  | male   | ruhango | tumba  | 07998506150 | tetajmuhire13@gmail.com  | NULL     |
+|  6 | emanuel | mugisha  | male   | ruhango | tumba  | 07998506155 | tetaemuhire13@gmail.com  | NULL     |
+|  7 | elia    | mugisha1 | male   | ruhango | tumba  | 07998506123 | tetajmuhire133@gmail.com | NULL     |
+|  8 | bwiza   | emerance | male   | ruhango | tumba  | 07998506125 | emeranceire13@gmail.com  | NULL     |
+|  9 | bushi   | mugisha  | male   | ruhango | tumba  | 0799850617  | tetajmuhire13@gmail.com  | NULL     |
+| 10 | brusce  | ikinyafu | male   | ruhango | tumba  | 0799850222  | bruce merode3@gmail.com  | NULL     |
++----+---------+----------+--------+---------+--------+-------------+--------------------------+----------+
+10 rows in set (0.00 sec)
+
+mysql> select *from ngoma  where  sector='tumba' or province='south';
++----+---------+----------+--------+---------+--------+-------------+--------------------------+----------+
+| id | fname   | lname    | gender | cell    | sector | tel         | email                    | province |
++----+---------+----------+--------+---------+--------+-------------+--------------------------+----------+
+|  1 | teta    | mwiza    | female | ngoma   | tumba  | 0798506155  | tetemwiza01@gmail.com    | south    |
+|  2 | muhire  | erick    | male   | ngoma   | tumba  | 0798506100  | muhire01@gmail.com       | south    |
+|  3 | emanuel | baba     | male   | ruhango | tumba  | 07998506155 | tetamuhire13@gmail.com   | NULL     |
+|  4 | emanuel | mugisha  | male   | ruhango | tumba  | 07998506155 | tetamuhire13@gmail.com   | NULL     |
+|  5 | erick   | mugisha  | male   | ruhango | tumba  | 07998506150 | tetajmuhire13@gmail.com  | NULL     |
+|  6 | emanuel | mugisha  | male   | ruhango | tumba  | 07998506155 | tetaemuhire13@gmail.com  | NULL     |
+|  7 | elia    | mugisha1 | male   | ruhango | tumba  | 07998506123 | tetajmuhire133@gmail.com | NULL     |
+|  8 | bwiza   | emerance | male   | ruhango | tumba  | 07998506125 | emeranceire13@gmail.com  | NULL     |
+|  9 | bushi   | mugisha  | male   | ruhango | tumba  | 0799850617  | tetajmuhire13@gmail.com  | NULL     |
+| 10 | brusce  | ikinyafu | male   | ruhango | tumba  | 0799850222  | bruce merode3@gmail.com  | NULL     |
++----+---------+----------+--------+---------+--------+-------------+--------------------------+----------+
+10 rows in set (0.00 sec)
+
+mysql>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
